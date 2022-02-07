@@ -1,0 +1,11 @@
+.colunas {
+  gap: 2%;
+
+  > div {
+    &:last-child {
+      flex: 1 1 100%;
+    }
+
+    flex: 1 1 48%;
+  }
+}

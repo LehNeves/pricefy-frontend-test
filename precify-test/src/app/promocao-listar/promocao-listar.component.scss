@@ -1,0 +1,45 @@
+cdk-row, cdk-header-row, cdk-footer-row {
+  display: flex;
+}
+
+cdk-cell, cdk-header-cell, cdk-footer-cell {
+  flex: 1;
+}
+
+.mat-column-GTIN,
+.mat-column-descricao,
+.mat-column-precoRegular,
+.mat-column-precoPromocional,
+.mat-column-dataInicial,
+.mat-column-dataFinal,
+.mat-column-filtroGTIN,
+.mat-column-filtroDescricao,
+.mat-column-filtroPrecoRegular,
+.mat-column-filtroPrecoPromocional,
+.mat-column-filtroDataInicial,
+.mat-column-filtroDataFinal
+{
+  padding: 0 4px;
+}
+
+.mat-column.categoria,
+.mat-column-filtroCategoria {
+  padding-left: 4px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 12px;
+}
+
+mat-form-field .mat-form-field-infix{
+  width: auto !important;
+}
+
+.mat-column-selecionar,
+.mat-column-filtroSelecionar {
+  max-width: 64px;
+}

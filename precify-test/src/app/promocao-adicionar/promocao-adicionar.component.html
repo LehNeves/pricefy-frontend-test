@@ -1,0 +1,84 @@
+<h1 mat-dialog-title>Adicione uma promoção</h1>
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="d-flex flex-wrap colunas">
+      <div>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>GTIN</mat-label>
+          <input type="text" matInput formControlName="GTIN">
+          <mat-error *ngIf="form.controls['GTIN'].hasError('required')">
+            GTIN é <strong>obrigatório.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Categoria</mat-label>
+          <mat-select disableRipple formControlName="categoria">
+            <ng-container *ngFor="let categoria of categoria$ | async">
+              <mat-option [value]="categoria.id"> {{ categoria.nome }} </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+          <mat-label>Preço regular</mat-label>
+          <span matPrefix>R$&nbsp;</span>
+          <input type="text" style="text-align: right;" matInput formControlName="precoRegular" mask="separator.2" thousandSeparator=".">
+          <mat-error *ngIf="form.controls['precoRegular'].hasError('required')">
+            Preço regular é <strong>obrigatório.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+          <mat-label>Preço promocional</mat-label>
+          <span matPrefix>R$&nbsp;</span>
+          <input type="text" style="text-align: right;" matInput formControlName="precoPromocional" mask="separator.2" thousandSeparator=".">
+          <mat-error *ngIf="form.controls['precoPromocional'].hasError('required')">
+            Preço promocional é <strong>obrigatório.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Data inicial</mat-label>
+          <input matInput [matDatepicker]="pickerDataInicial" formControlName="dataInicial">
+          <mat-datepicker-toggle matSuffix [for]="pickerDataInicial"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDataInicial></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Data final</mat-label>
+          <input matInput [matDatepicker]="pickerDataFinal" formControlName="dataFinal">
+          <mat-datepicker-toggle matSuffix [for]="pickerDataFinal"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDataFinal></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput formControlName="descricao"></textarea>
+          <mat-error *ngIf="form.controls['descricao'].hasError('required')">
+            Descrição é <strong>obrigatório.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['descricao'].hasError('maxlength')">
+            Descrição tem o tamanho máximo de <strong>100 caracteres.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button>Salvar</button>
+</mat-dialog-actions>

@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  node:
+    build:
+      dockerfile: nginx.Dockerfile
+      context: ./precify-test/
+    image: leandro/node
+    container_name: angular
+    ports:
+      - 4200:80
+    depends_on:
+      - "dados"
+
+  dados:
+    build:
+      dockerfile: Dockerfile
+      context: ./dados/
+    image: leandro/json-server
+    container_name: dados
+    ports:
+      - 3000:3000
+    volumes:
+      - ./dados/config/:/home/node/app/config

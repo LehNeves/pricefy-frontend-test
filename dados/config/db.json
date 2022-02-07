@@ -1,0 +1,25 @@
+{
+  "promocao": [],
+  "categoria": [
+    {
+      "id": 1,
+      "nome": "Eletrodoméstico"
+    },
+    {
+      "id": 2,
+      "nome": "Cama, Mesa e Banho "
+    },
+    {
+      "id": 2,
+      "nome": "Móveis"
+    },
+    {
+      "id": 4,
+      "nome": "Informática"
+    },
+    {
+      "nome": "Cozinha",
+      "id": 5
+    }
+  ]
+}

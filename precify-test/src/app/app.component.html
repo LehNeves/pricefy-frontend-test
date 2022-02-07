@@ -1,0 +1,23 @@
+<div class="d-flex h-100 flex-column">
+  <mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="adicionar()">
+        <mat-icon>add</mat-icon>
+        <span>Adicionar</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>remove</mat-icon>
+        <span>Remover</span>
+      </button>
+    </mat-menu>
+    <span>Pricefy Promotions</span>
+  </mat-toolbar>
+
+  <promocao-listar [categoria]="categoria$" [addPromocao]="adicionarPromocaoSubject.asObservable()" class="h-100"></promocao-listar>
+
+  <mat-toolbar>
+  </mat-toolbar>
+</div>
