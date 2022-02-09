@@ -1,5 +1,36 @@
 {
-  "promocao": [],
+  "promocao": [
+    {
+      "GTIN": "1",
+      "descricao": "1",
+      "precoRegular": "15000.29",
+      "precoPromocional": "19900.20",
+      "dataInicial": "2022-02-01T03:00:00.000Z",
+      "dataFinal": "2022-02-08T03:00:00.000Z",
+      "categoria": 2,
+      "id": 4
+    },
+    {
+      "GTIN": "213123",
+      "descricao": "1",
+      "precoRegular": "1.28",
+      "precoPromocional": "222222.99",
+      "dataInicial": "2022-02-24T03:00:00.000Z",
+      "dataFinal": "2022-02-25T03:00:00.000Z",
+      "categoria": 4,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "GTIN": "12321321",
+      "descricao": "DESCREVENDO Produto",
+      "precoRegular": "81811818.99",
+      "precoPromocional": "51515151519.85",
+      "dataInicial": "2022-02-11T03:00:00.000Z",
+      "dataFinal": "2022-02-17T03:00:00.000Z",
+      "categoria": 4
+    }
+  ],
   "categoria": [
     {
       "id": 1,

@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
-import { ICategoria, IPromocao } from './promocao.interface';
-import { PromocaoAdicionarComponent } from './promocao-adicionar/promocao-adicionar.component';
 import { PromocaoService } from './promocao.service';
 
 @Component({
@@ -12,27 +9,34 @@ import { PromocaoService } from './promocao.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  categoria$: Observable<ICategoria[]>;
-
-  adicionarPromocaoSubject: Subject<IPromocao>;
+export class AppComponent implements AfterViewInit {
+  atualizar: Subject<void>;
+  removerSubject: Subject<void>;
+  editarSubject: Subject<void>;
+  adicionarSubject: Subject<void>;
 
   constructor(
-    private dialog: MatDialog,
     private promocaoService: PromocaoService
   ) {
-    this.categoria$ = this.promocaoService.getCategorias();
-    this.adicionarPromocaoSubject = new Subject();
+    this.atualizar = new Subject();
+    this.removerSubject = new Subject();
+    this.editarSubject = new Subject();
+    this.adicionarSubject = new Subject();
+  }
+
+  ngAfterViewInit(): void {
+    this.atualizar.next();
   }
 
   adicionar(): void {
-    const dialogRef = this.dialog.open(PromocaoAdicionarComponent, {
-      data: { categoria$: this.categoria$ },
-      width: '600px',
-    });
+    this.adicionarSubject.next();
+  }
 
-    dialogRef.afterClosed().subscribe(
-      (data: IPromocao) => this.adicionarPromocaoSubject.next(data)
-    );
+  remover(): void {
+    this.removerSubject.next();
+  }
+
+  editar(): void {
+    this.editarSubject.next()
   }
 }

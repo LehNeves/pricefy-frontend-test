@@ -8,15 +8,19 @@
         <mat-icon>add</mat-icon>
         <span>Adicionar</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="remover()">
         <mat-icon>remove</mat-icon>
         <span>Remover</span>
+      </button>
+      <button mat-menu-item (click)="editar()">
+        <mat-icon>edit</mat-icon>
+        <span>Editar</span>
       </button>
     </mat-menu>
     <span>Pricefy Promotions</span>
   </mat-toolbar>
 
-  <promocao-listar [categoria]="categoria$" [addPromocao]="adicionarPromocaoSubject.asObservable()" class="h-100"></promocao-listar>
+  <promocao-listar [atualizar]="atualizar" [remover]="removerSubject.asObservable()" [editar]="editarSubject.asObservable()" [adicionar]="adicionarSubject.asObservable()" class="h-100"></promocao-listar>
 
   <mat-toolbar>
   </mat-toolbar>

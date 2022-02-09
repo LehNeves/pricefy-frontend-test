@@ -1,4 +1,4 @@
 {
-  "/promocao/*": "/$1",
+  "/promocao/:id": "/promocao/:id",
   "/categoria/*": "/$1"
 }

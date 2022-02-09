@@ -5,9 +5,12 @@
       <div>
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>GTIN</mat-label>
-          <input type="text" matInput formControlName="GTIN">
+          <input type="text" matInput formControlName="GTIN" [errorStateMatcher]="matcher">
           <mat-error *ngIf="form.controls['GTIN'].hasError('required')">
             GTIN é <strong>obrigatório.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['GTIN'].hasError('maxlength') || form.controls['GTIN'].hasError('minlength')">
+            GTIN deve ser preenchido com <strong>14 caracteres.</strong>
           </mat-error>
         </mat-form-field>
       </div>
@@ -20,6 +23,9 @@
               <mat-option [value]="categoria.id"> {{ categoria.nome }} </mat-option>
             </ng-container>
           </mat-select>
+          <mat-error *ngIf="form.controls['categoria'].hasError('required')">
+            Categoria é <strong>obrigatório.</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -27,7 +33,7 @@
         <mat-form-field class="w-100" appearance="outline" floatLabel="always">
           <mat-label>Preço regular</mat-label>
           <span matPrefix>R$&nbsp;</span>
-          <input type="text" style="text-align: right;" matInput formControlName="precoRegular" mask="separator.2" thousandSeparator=".">
+          <input type="text" style="text-align: right;" matInput formControlName="precoRegular" mask="separator.2" thousandSeparator="." [decimalMarker]="','" [errorStateMatcher]="matcher">
           <mat-error *ngIf="form.controls['precoRegular'].hasError('required')">
             Preço regular é <strong>obrigatório.</strong>
           </mat-error>
@@ -38,7 +44,7 @@
         <mat-form-field class="w-100" appearance="outline" floatLabel="always">
           <mat-label>Preço promocional</mat-label>
           <span matPrefix>R$&nbsp;</span>
-          <input type="text" style="text-align: right;" matInput formControlName="precoPromocional" mask="separator.2" thousandSeparator=".">
+          <input type="text" style="text-align: right;" matInput formControlName="precoPromocional" mask="separator.2" thousandSeparator="." [decimalMarker]="','" [errorStateMatcher]="matcher">
           <mat-error *ngIf="form.controls['precoPromocional'].hasError('required')">
             Preço promocional é <strong>obrigatório.</strong>
           </mat-error>
@@ -48,25 +54,43 @@
       <div>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Data inicial</mat-label>
-          <input matInput [matDatepicker]="pickerDataInicial" formControlName="dataInicial">
+          <input matInput [matDatepicker]="pickerDataInicial" formControlName="dataInicial" [errorStateMatcher]="matcher">
           <mat-datepicker-toggle matSuffix [for]="pickerDataInicial"></mat-datepicker-toggle>
           <mat-datepicker #pickerDataInicial></mat-datepicker>
+          <mat-error *ngIf="form.controls['dataInicial'].hasError('required')">
+            Data inicial é <strong>obrigatório.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['dataInicial'].hasError('dataInicialMenorQueADataAtual')">
+            Data inicial é menor que <strong> data atual.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['dataInicial'].hasError('dataInicialMaiorQueADataFinal')">
+            Data inicial é maior que <strong> data final.</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Data final</mat-label>
-          <input matInput [matDatepicker]="pickerDataFinal" formControlName="dataFinal">
+          <input matInput [matDatepicker]="pickerDataFinal" formControlName="dataFinal" [errorStateMatcher]="matcher">
           <mat-datepicker-toggle matSuffix [for]="pickerDataFinal"></mat-datepicker-toggle>
           <mat-datepicker #pickerDataFinal></mat-datepicker>
+          <mat-error *ngIf="form.controls['dataFinal'].hasError('required')">
+            Data final é <strong>obrigatório.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['dataFinal'].hasError('dataFinalMenorQueADataAtual')">
+            Data final é menor que <strong> data atual.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['dataFinal'].hasError('dataFinalMenorQueADataInicial')">
+            Data final é maior que <strong> data inicial.</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Descrição</mat-label>
-          <textarea matInput formControlName="descricao"></textarea>
+          <textarea matInput formControlName="descricao" [errorStateMatcher]="matcher"></textarea>
           <mat-error *ngIf="form.controls['descricao'].hasError('required')">
             Descrição é <strong>obrigatório.</strong>
           </mat-error>
@@ -80,5 +104,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button>Salvar</button>
+  <button mat-button (click)="salvar()">Salvar</button>
 </mat-dialog-actions>

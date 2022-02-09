@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import '@angular/common/locales/global/pt';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,13 +21,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { PromocaoAdicionarComponent } from './promocao-adicionar/promocao-adicionar.component';
 import { PromocaoEditarComponent } from './promocao-editar/promocao-editar.component';
-import { ConfirmarComponent } from './confirmar/confirmar.component';
 import { PromocaoListarComponent } from './promocao-listar/promocao-listar.component';
 
 @NgModule({
@@ -34,7 +35,6 @@ import { PromocaoListarComponent } from './promocao-listar/promocao-listar.compo
     AppComponent,
     PromocaoAdicionarComponent,
     PromocaoEditarComponent,
-    ConfirmarComponent,
     PromocaoListarComponent
   ],
   imports: [
@@ -57,16 +57,17 @@ import { PromocaoListarComponent } from './promocao-listar/promocao-listar.compo
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    MatSnackBarModule
   ],
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: 'pt-br'
+      useValue: 'pt'
     },
     {
       provide: MAT_DATE_LOCALE,
-      useValue: 'pt-BR'
+      useValue: 'pt'
     },
   ],
   bootstrap: [AppComponent]
